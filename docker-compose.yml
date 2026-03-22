@@ -702,7 +702,9 @@ services:
         - http://localhost
     depends_on:
       web:
-        <<: *depends_on-healthy
+      # ? ERROR: dependency failed to start: container sentry-self-hosted-web-1 is unhealthy (2/3)
+        # <<: *depends_on-healthy
+        <<: *depends_on-default
         restart: true
       relay:
         <<: *depends_on-healthy
@@ -727,7 +729,9 @@ services:
       redis:
         <<: *depends_on-healthy
       web:
-        <<: *depends_on-healthy
+      # ? ERROR: dependency failed to start: container sentry-self-hosted-web-1 is unhealthy (3/3)
+        # <<: *depends_on-healthy
+        <<: *depends_on-default
     healthcheck:
       <<: *healthcheck_defaults
       test: ["CMD", "/bin/relay", "healthcheck"]
